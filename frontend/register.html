@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KlimaCook – Create account</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    /* Auth page-only styles (kept small, won’t affect the rest) */
+    .auth-shell { max-width: 560px; margin: 56px auto; padding: 0 16px; }
+    .brand { text-align: center; margin-bottom: 18px; }
+
+    /* Use the real KlimaCook logo */
+    .brand img.logo-auth {
+      width: 68px; height: 68px; object-fit: contain; margin-bottom: 8px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.12));
+    }
+
+    .brand h1 { margin: 0; font-size: 1.9rem; color: #1f6b3a; letter-spacing: .2px; font-weight: 800; }
+    .brand .sub { margin: 4px 0 0 0; color: #6b7280; }
+    .auth-card {
+      background: #ffffffcc; border: 1px solid #e5e7eb; border-radius: 14px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 28px rgba(16,63,36,.10);
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+    .row { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+    .row label { color:#374151; font-weight: 500; }
+    .row input, .row textarea {
+      width: 100%;
+      border: 1px solid #e5e7eb; border-radius: 10px; height: 42px; padding: 10px;
+      font-size: 15px; outline: none; background: #fff;
+    }
+    .row textarea { height: 88px; resize: vertical; }
+    .actions { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .btn { height: 40px; padding: 0 14px; border-radius: 10px; border: 0; cursor: pointer; }
+    .btn[disabled] { opacity: .6; cursor: not-allowed; }
+    .btn-primary { background: linear-gradient(180deg,#2b7a3d,#1f6b3a); color: #fff; box-shadow: 0 8px 16px rgba(31,107,58,.18); }
+    .muted { color: #6b7280; }
+    .status { margin-top: 8px; min-height: 20px; }
+    .back { text-decoration: none; color: #374151; }
+    .back:hover { text-decoration: underline; }
+    .inline { display:flex; align-items:center; gap:8px; }
+    .hint { font-size: 12px; color:#6b7280; margin-top:2px; }
+    .error { color:#b91c1c; font-size: 13px; }
+    .success { color:#166534; }
+  </style>
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="brand">
+      <!-- Updated logo path + class -->
+      <img src="assets/logo.png" alt="KlimaCook" class="logo-auth" onerror="this.style.display='none'">
+      <h1>KlimaCook</h1>
+      <p class="sub">Sustainable cooking made simple</p>
+    </div>
+
+    <div class="auth-card">
+      <h2 style="margin:0 0 6px 0;">Create your account</h2>
+      <p class="muted" style="margin:0 0 12px 0">
+        Your password is masked and stored securely. Allergies help personalize suggestions.
+      </p>
+
+      <form id="regForm" novalidate>
+        <div class="row">
+          <label for="username">User ID</label>
+          <input
+            id="username"
+            name="username"
+            placeholder="e.g., debroy"
+            required
+            autocomplete="username"
+            pattern="^[a-zA-Z0-9_.-]{3,30}$"
+          />
+          <div class="hint">3–30 chars: letters, digits, <code>_.-</code></div>
+          <div id="errUser" class="error" role="alert" aria-live="polite"></div>
+        </div>
+
+        <div class="row">
+          <label for="password">Password</label>
+          <div class="inline">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+            <button id="togglePw" class="btn" type="button" aria-label="Show password">👁</button>
+          </div>
+          <div class="hint">At least 8 characters.</div>
+          <div id="errPw" class="error" role="alert" aria-live="polite"></div>
+        </div>
+
+        <div class="row">
+          <label for="allergies">Allergies (comma-separated)</label>
+          <textarea id="allergies" name="allergies" placeholder="peanut, gluten, sesame"></textarea>
+        </div>
+
+        <div class="actions">
+          <button id="btnSubmit" type="submit" class="btn btn-primary">Register</button>
+          <a class="back" href="./login.html">Already have an account?</a>
+        </div>
+
+        <div id="status" class="status muted" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./register.js"></script>
+</body>
+</html>

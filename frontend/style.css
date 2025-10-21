@@ -1,0 +1,223 @@
+/* ==== Theme tokens ==== */
+:root{
+  --green-900:#0e3a1a;
+  --green-700:#1f6b3a;
+  --green-600:#2b7a3d;
+  --green-500:#33a24e;
+  --green-300:#a6e4b9;
+  --ink:#172123;
+  --muted:#6b7280;
+  --bg:#e9f5ee;          /* base */
+  --card:#ffffffcc;      /* translucent glass */
+  --border:#d9e6dd;
+  --shadow:0 10px 30px rgba(16,63,36,.12);
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  /* Lush green gradient background with subtle vignette */
+  background:
+    radial-gradient(1200px 600px at 20% -20%, rgba(166,228,185,.65), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(51,162,78,.25), transparent 55%),
+    linear-gradient(180deg, #f3fbf6 0%, #e6f3ec 40%, #dff0e6 100%);
+}
+
+/* Top bar / brand */
+.topbar{
+  padding:18px 16px 8px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.logo{
+  height:52px;
+  width:auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.10));
+}
+.brand-text h1{
+  margin:.1rem 0 .15rem 0;
+  font-weight:800;
+  letter-spacing:.2px;
+  font-size:1.8rem;
+  color:var(--green-700);
+  text-shadow:0 1px 0 #fff;
+}
+.sub{margin:.1rem 0;color:var(--muted)}
+
+/* Layout */
+.shell{max-width:1150px;margin:0 auto;padding:0 16px 20px}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+
+/* Cards: glassmorphism */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  backdrop-filter:saturate(140%) blur(6px);
+}
+
+/* Controls */
+.controls{display:flex;gap:10px;align-items:center;margin:10px 0 14px}
+.controls input{
+  flex:1;
+  border:1px solid var(--border);
+  border-radius:10px;
+  height:42px;
+  padding:0 12px;
+  background:#fff;
+  transition:box-shadow .15s ease, border-color .15s ease;
+}
+.controls input:focus{
+  outline:none;
+  border-color:var(--green-500);
+  box-shadow:0 0 0 3px rgba(51,162,78,.15);
+}
+
+/* Buttons */
+.btn, .controls button{
+  background:linear-gradient(180deg, var(--green-600), var(--green-700));
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  height:42px;
+  padding:0 16px;
+  cursor:pointer;
+  font-weight:600;
+  letter-spacing:.2px;
+  box-shadow:0 8px 16px rgba(31,107,58,.18);
+  transition:transform .06s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn:hover, .controls button:hover{
+  filter:saturate(110%);
+  box-shadow:0 10px 20px rgba(31,107,58,.22);
+}
+.btn:active, .controls button:active{ transform:translateY(1px) }
+.btn.secondary{
+  background:linear-gradient(180deg, #e9f4ed, #dcebe2);
+  color:#194d2c;
+  border:1px solid #cfe3d7;
+  box-shadow:0 6px 14px rgba(31,107,58,.08);
+}
+
+/* Table */
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid var(--border);background:#fff}
+.table{width:100%;border-collapse:separate;border-spacing:0}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid #eef3ef}
+.table thead th{
+  background:linear-gradient(180deg,#f3fbf6,#e9f5ef);
+  color:#0b3a1a;
+  font-weight:700;
+  position:sticky; top:0; z-index:1;
+}
+.table tbody tr:hover{background:#f8fbf9}
+.table .co2{width:140px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* Section heading */
+.card h2, .card h3{
+  margin:.2rem 0 .8rem 0;
+  font-weight:800;
+  color:#124d2a;
+}
+
+/* Chat panel */
+.chat{
+  height:460px;
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  background:linear-gradient(180deg, #ffffff, #f8fcf9);
+  box-shadow:var(--shadow);
+  margin-bottom:10px
+}
+.msg{display:flex;margin:8px 0}
+.msg.you{justify-content:flex-end}
+.bubble{
+  max-width:78%;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid #e6eee9;
+  background:#fff;
+  box-shadow:0 6px 14px rgba(0,0,0,.05);
+}
+.msg.you .bubble{
+  background:linear-gradient(180deg,#f1fff6,#e6f8ed);
+  border-color:#cfeadc;
+}
+
+/* Modal */
+dialog::backdrop{background:rgba(0,0,0,.26)}
+.modal{min-width:min(760px,92vw)}
+.modal header{
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border)
+}
+.modal header h3{margin:0;padding:12px 14px}
+.modal header button{
+  border:0;background:transparent;font-size:1.2rem;cursor:pointer;padding:10px 12px
+}
+.modal-body{padding:14px}
+
+/* Badge + key/value list */
+.badge{
+  display:inline-block;background:#edfdf0;color:#0b3a1a;
+  border:1px solid #cde9d2;border-radius:999px;padding:.25rem .6rem;
+  font-size:.8rem;margin-left:.35rem
+}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:8px}
+.kv div{padding:4px 0;border-bottom:1px dashed #e8efe9}
+.kv .k{color:#3b5c46}
+
+/* Ingredients list */
+ul.ing{margin:.5rem 0 0 1rem;padding:0}
+ul.ing li{margin:3px 0}
+
+/* Footer */
+footer{padding:28px 16px;color:#557; text-align:center}
+
+/* Tiny adjustments */
+.table.small th, .table.small td { padding: 8px 10px; }
+
+/* Recipe modal image */
+.hero{
+  width:100%;
+  max-width:520px;
+  height:auto;
+  display:block;
+  margin:0 auto 18px auto;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+/* Light “card-inset” look for left and right columns */
+main .card{
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.88));
+}
+
+/* Ingredients left, Method right inside the modal */
+.modal-body .recipe-grid{
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Stack on small screens */
+@media (max-width: 900px){
+  .modal-body .recipe-grid{ grid-template-columns: 1fr; }
+}
+
+/* Make the ingredients table hug the left */
+.modal-body .table-wrap{ margin: 0; }
+.modal-body .table{ width: 100%; }
+.modal-body .table th, .modal-body .table td{ text-align: left; }

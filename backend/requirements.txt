@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+scikit-learn
+numpy
+# Optional for /ask endpoint (uncomment if you want it live)
+openai>=1.0.0

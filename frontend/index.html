@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KlimaCook – Sustainable Recipes</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="shell topbar">
+    <div class="brand">
+      <img src="assets/logo.png" alt="KlimaCook" class="logo" />
+      <div class="brand-text">
+        <h1>KlimaCook</h1>
+        <p class="sub">Discover climate-friendly recipes and ask sustainability questions.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell grid">
+    <!-- LEFT: Recipes -->
+    <section class="card">
+      <h2>Recipes</h2>
+      <div class="controls">
+        <input id="search" placeholder="Search recipe name… or describe (e.g., 'ohne Fleisch, vegan')" />
+        <input id="max" type="number" min="0" step="0.1" placeholder="Max CO₂ (kg)" />
+               <label class="micro" style="display:inline-flex;align-items:center;gap:.4rem;">
+          <!--input id="semantic" type="checkbox" >
+          Semantic search/-->
+        </label>
+        <button id="btnSearch">Search</button>
+        <!--button id="btnSearch">Search</button!-->
+        <span class="hint">Sorted by ascending CO₂e</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" id="recipesTable" aria-label="Recipes">
+          <thead>
+            <tr>
+              <th scope="col">Recipe</th>
+              <th scope="col" class="co2">CO₂e (kg)</th>
+            </tr>
+          </thead>
+          <tbody id="recipesBody">
+            <tr><td colspan="2" class="muted">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIGHT: Chat -->
+    <section class="card">
+      <h2>Ask KlimaCook</h2>
+      <div id="chat" class="chat" aria-live="polite" aria-label="Chat messages"></div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" placeholder="Ask about sustainable swaps, meal ideas, etc." />
+        <button type="submit">Ask</button>
+      </form>
+      <p class="micro">Tip: “How can I make bolognese lower-carbon?”</p>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <dialog id="modal">
+    <article class="modal">
+      <header>
+        <h3 id="modalTitle">Recipe</h3>
+        <button id="modalClose" aria-label="Close">✕</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+    </article>
+  </dialog>
+
+  <footer class="shell micro muted">
+    <span>© KlimaCook</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
